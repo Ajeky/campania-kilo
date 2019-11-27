@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HistoriasService } from 'src/app/services/historias.service';
 import { Historia } from 'src/app/models/historia.interface';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { HistoriaCrearDialogoComponent } from '../historia-crear-dialogo/historia-crear-dialogo.component';
 import { FirestoreResponse } from 'src/app/models/firestore-response.interface';
 import { stringToKeyValue } from '@angular/flex-layout/extended/typings/style/style-transforms';
 import { HistoriaEditarDialogComponent } from '../historia-editar-dialog/historia-editar-dialog.component';
 import { HistoriaEliminarDialogoComponent } from '../historia-eliminar-dialogo/historia-eliminar-dialogo.component';
+import { HistoriaCrearDialogComponent } from '../historia-crear-dialog/historia-crear-dialog.component';
 
 @Component({
   selector: 'app-historias-listado',
@@ -42,7 +42,7 @@ export class HistoriasListadoComponent implements OnInit {
   }
 
   dialogoCrearHistoria() {
-    let dialogRef = this.dialog.open(HistoriaCrearDialogoComponent, {
+    let dialogRef = this.dialog.open(HistoriaCrearDialogComponent, {
       width: '300px'
     });
 

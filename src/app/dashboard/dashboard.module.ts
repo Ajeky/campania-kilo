@@ -28,7 +28,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { RouterModule } from '@angular/router';
 import { HistoriasListadoComponent } from './historias-listado/historias-listado.component';
 import { HistoriasService } from '../services/historias.service';
-import { HistoriaCrearDialogoComponent } from './historia-crear-dialogo/historia-crear-dialogo.component';
 import { FormsModule } from '@angular/forms';
 import { HistoriaEditarDialogComponent } from './historia-editar-dialog/historia-editar-dialog.component';
 import { AngularFireModule } from '@angular/fire';
@@ -37,6 +36,9 @@ import { environment } from 'src/environments/environment';
 import { HistoriaEliminarDialogoComponent } from './historia-eliminar-dialogo/historia-eliminar-dialogo.component';
 import { EntidadListadoComponent } from './entidad-listado/entidad-listado.component';
 import { EntidadService } from '../services/entidad.service';
+import { EntidadCrearDialogComponent } from './entidad-crear-dialog/entidad-crear-dialog.component';
+import { HistoriaCrearDialogComponent } from './historia-crear-dialog/historia-crear-dialog.component';
+import { EntidadEliminarDialogComponent } from './entidad-eliminar-dialog/entidad-eliminar-dialog.component';
 
 @NgModule({
   imports: [
@@ -62,12 +64,17 @@ import { EntidadService } from '../services/entidad.service';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
-  declarations: [DashboardComponent, HistoriasListadoComponent, HistoriaCrearDialogoComponent, HistoriaEditarDialogComponent, HistoriaEliminarDialogoComponent, EntidadListadoComponent],
+  declarations: [DashboardComponent, HistoriasListadoComponent, HistoriaCrearDialogComponent, HistoriaEditarDialogComponent, HistoriaEliminarDialogoComponent, EntidadListadoComponent, EntidadCrearDialogComponent, EntidadEliminarDialogComponent],
   providers: [
     HistoriasService,
     EntidadService,
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ],
-  entryComponents: [HistoriaCrearDialogoComponent, HistoriaEditarDialogComponent, HistoriaEliminarDialogoComponent]
+  entryComponents: [ 
+    HistoriaEditarDialogComponent, 
+    HistoriaEliminarDialogoComponent,
+    HistoriaCrearDialogComponent,
+    EntidadCrearDialogComponent
+  ]
 })
 export class DashboardModule {}

@@ -1,5 +1,6 @@
 export class EntidadDto {
     constructor(
+        public nombre: string,
         public personaContacto: string,
         public nTelefono: string,
         public direccionPostal: string,
@@ -8,6 +9,7 @@ export class EntidadDto {
 
     transformarDto() {
         return {
+            nombre: this.nombre,
             personaContacto: this.personaContacto,
             nTelefono: this.nTelefono,
             direccionPostal: this.direccionPostal,

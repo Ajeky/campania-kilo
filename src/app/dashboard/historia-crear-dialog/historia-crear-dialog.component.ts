@@ -4,15 +4,15 @@ import { MatDialogRef } from '@angular/material';
 import { HistoriasService } from 'src/app/services/historias.service';
 
 @Component({
-  selector: 'app-historia-crear-dialogo',
-  templateUrl: './historia-crear-dialogo.component.html',
-  styleUrls: ['./historia-crear-dialogo.component.scss']
+  selector: 'app-historia-crear-dialog',
+  templateUrl: './historia-crear-dialog.component.html',
+  styleUrls: ['./historia-crear-dialog.component.scss']
 })
-export class HistoriaCrearDialogoComponent implements OnInit {
+export class HistoriaCrearDialogComponent implements OnInit {
   historiaDto: HistoriaDto;
   
   constructor(
-    public dialogRef: MatDialogRef<HistoriaCrearDialogoComponent>,
+    public dialogRef: MatDialogRef<HistoriaCrearDialogComponent>,
     private historiaServicio: HistoriasService
   ) { }
 

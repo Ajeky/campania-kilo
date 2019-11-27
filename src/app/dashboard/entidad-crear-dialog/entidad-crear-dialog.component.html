@@ -1,0 +1,26 @@
+<div fxFlexLayout="column">
+    <h1 mat-dialog-title>Nueva entidad</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <input matInput [(ngModel)]="entidadDto.nombre" placeholder="Nombre de la entidad">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="entidadDto.personaContacto" placeholder="Nombre de la persona de contacto">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="entidadDto.nTelefono" placeholder="Número de teléfono">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [(ngModel)]="entidadDto.direccionPostal" placeholder="Dirección Postal">
+        </mat-form-field>
+        <mat-form-field>
+            <input type="number" matInput [(ngModel)]="entidadDto.kilosDestinados" placeholder="Kilos destinados">
+        </mat-form-field>
+
+    </div>
+    <div mat-dialog-actions>
+        <button class="boton-rojo" mat-button (click)="cancelar()">Cancelar</button>
+        <button class="boton-azul" *ngIf="id == null" mat-button (click)="guardarEntidad()" cdkFocusInitial>Guardar</button>
+        <button class="boton-azul" *ngIf="id != null" mat-button (click)="editarEntidad()">Guardar</button>
+    </div>
+</div>
