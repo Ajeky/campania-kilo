@@ -1,0 +1,32 @@
+<div fxLayout="column">
+    <table mat-table [dataSource]="listaProductos" class="mat-elevation-z8 wide-table" fxFlex="100%">
+        <ng-container matColumnDef="nombreProducto">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let element"> {{ element.data.nombreProducto }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="kilos">
+            <th mat-header-cell *matHeaderCellDef> Kilos aportados </th>
+            <td mat-cell *matCellDef="let element"> {{ element.data.kilos }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button aria-label="Editar producto" (click)="dialogoEditarProducto(element)">
+                <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button aria-label="Eliminar producto" (click)="dialogoEliminarProducto(element.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<button mat-fab color="warn" class="mat-fab-bottom-right" (click)="dialogoCrearProducto()" style="z-index: 9;">
+    <mat-icon class="mat-24">add</mat-icon>
+</button>

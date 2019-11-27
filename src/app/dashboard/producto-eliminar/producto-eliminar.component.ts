@@ -1,24 +1,23 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { EntidadService } from 'src/app/services/entidad.service';
+import { ProductoService } from 'src/app/services/producto.service';
 
 export interface DatosEliminar {
   id: string;
 }
-
 @Component({
-  selector: 'app-entidad-eliminar-dialog',
-  templateUrl: './entidad-eliminar-dialog.component.html',
-  styleUrls: ['./entidad-eliminar-dialog.component.scss']
+  selector: 'app-producto-eliminar',
+  templateUrl: './producto-eliminar.component.html',
+  styleUrls: ['./producto-eliminar.component.scss']
 })
-export class EntidadEliminarDialogComponent implements OnInit {
+export class ProductoEliminarComponent implements OnInit {
 
   id: string;
 
   constructor(
-    public dialogRef: MatDialogRef<EntidadEliminarDialogComponent>,
+    public dialogRef: MatDialogRef<ProductoEliminarComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DatosEliminar,
-    private entidadServicio: EntidadService
+    private productoServicio: ProductoService
   ) { }
 
   ngOnInit() {
@@ -26,7 +25,7 @@ export class EntidadEliminarDialogComponent implements OnInit {
   }
 
   confirmarBorrado() {
-    this.entidadServicio.deleteEntidad(this.id).then(resp => {
+    this.productoServicio.deleteProducto(this.id).then( resp => {
       this.dialogRef.close(true);
     }).catch(resp => {
       this.dialogRef.close(false);

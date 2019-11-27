@@ -4,6 +4,7 @@ import { Entidad } from 'src/app/models/entidad.interface';
 import { EntidadService } from 'src/app/services/entidad.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EntidadCrearDialogComponent } from '../entidad-crear-dialog/entidad-crear-dialog.component';
+import { EntidadEliminarDialogComponent } from '../entidad-eliminar-dialog/entidad-eliminar-dialog.component';
 
 @Component({
   selector: 'app-entidad-listado',
@@ -61,6 +62,37 @@ export class EntidadListadoComponent implements OnInit {
     let dialogRef = this.dialog.open(EntidadCrearDialogComponent, {
       width: '25%',
       data: {id: firestoreResponse.id, entidad: firestoreResponse.data}
+    });
+
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp != null) {
+        if (resp) {
+          this.snackBar.open("Entidad editada correctamente")
+        } else {
+          this.snackBar.open("Error al editar la entidad");
+        }
+      } else {
+        this.snackBar.open("Error al editar la entidad");
+      }      
+    });
+  }
+
+  dialogoEliminarEntidad(id: string) {
+    let dialogRef = this.dialog.open(EntidadEliminarDialogComponent, {
+      width: '25%',
+      data: {id: id}
+    });
+
+    dialogRef.afterClosed().subscribe(resp => {
+      if (resp != null) {
+        if (resp) {
+          this.snackBar.open("Entidad eliminada correctamente")
+        } else {
+          this.snackBar.open("Error al eliminar la entidad");
+        }
+      } else {
+        this.snackBar.open("Error al eliminar la entidad");
+      }      
     });
   }
 

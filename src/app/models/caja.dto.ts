@@ -4,7 +4,7 @@ import { Entidad } from './entidad.interface';
 export class CajaDto {
     constructor (
         public nCaja: string,
-        public nProducto: Producto,
+        public tipoProducto: Producto,
         public kilos: number,
         public entidadDestino: Entidad
     ) {  }
@@ -12,7 +12,7 @@ export class CajaDto {
     transformarDto() {
         return {
             nCaja: this.nCaja,
-            nProducto: this.nProducto,
+            tipoProducto: this.tipoProducto,
             kilos: this.kilos,
             entidadDestino: this.entidadDestino
         }

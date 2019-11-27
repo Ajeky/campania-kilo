@@ -1,5 +1,6 @@
 <div fxFlexLayout="column">
-    <h1 mat-dialog-title>Nueva entidad</h1>
+    <h1 *ngIf="id == null" mat-dialog-title>Nueva entidad</h1>
+    <h1 *ngIf="id != null" mat-dialog-title>Editar entidad</h1>
     <div mat-dialog-content>
         <mat-form-field>
             <input matInput [(ngModel)]="entidadDto.nombre" placeholder="Nombre de la entidad">
@@ -19,8 +20,8 @@
 
     </div>
     <div mat-dialog-actions>
-        <button class="boton-rojo" mat-button (click)="cancelar()">Cancelar</button>
-        <button class="boton-azul" *ngIf="id == null" mat-button (click)="guardarEntidad()" cdkFocusInitial>Guardar</button>
-        <button class="boton-azul" *ngIf="id != null" mat-button (click)="editarEntidad()">Guardar</button>
+        <button color="warn" mat-raised-button (click)="cancelar()">Cancelar</button>
+        <button color="primary" *ngIf="id == null" mat-raised-button (click)="guardarEntidad()" cdkFocusInitial>Guardar</button>
+        <button color="primary" *ngIf="id != null" mat-raised-button (click)="editarEntidad()">Guardar</button>
     </div>
 </div>
