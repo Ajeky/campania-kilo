@@ -20,6 +20,10 @@ export class EntidadService {
     return this.db.collection<Entidad>(nombreColeccion).snapshotChanges();
   }
 
+  public getEntidadesRaw() {
+    return this.db.collection<Entidad>(nombreColeccion).valueChanges();
+  }
+
   public updateEntidad(id: string, entidad: Entidad) {
     return this.db.collection<Entidad>(nombreColeccion).doc(id).update(entidad);
   }

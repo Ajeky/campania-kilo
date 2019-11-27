@@ -20,6 +20,10 @@ export class ProductoService {
     return this.db.collection<Producto>(nombreColeccion).snapshotChanges();
   }
 
+  public getProductosRaw() {
+    return this.db.collection<Producto>(nombreColeccion).valueChanges();
+  }
+
   public updateProducto(id: string, producto: Producto) {
     return this.db.collection<Producto>(nombreColeccion).doc(id).update(producto);
   }

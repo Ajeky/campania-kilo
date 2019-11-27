@@ -43,6 +43,7 @@ import { ProductoEliminarComponent } from './producto-eliminar/producto-eliminar
 import { CajasListadoComponent } from './cajas-listado/cajas-listado.component';
 import { CajaCrearDialogComponent } from './caja-crear-dialog/caja-crear-dialog.component';
 import { CajaEliminarDialogComponent } from './caja-eliminar-dialog/caja-eliminar-dialog.component';
+import { CajaService } from '../services/caja.service';
 
 @NgModule({
   imports: [
@@ -81,12 +82,14 @@ import { CajaEliminarDialogComponent } from './caja-eliminar-dialog/caja-elimina
     ProductoCrearComponent, 
     ProductoEliminarComponent, 
     CajasListadoComponent, 
-    CajaCrearDialogComponent, CajaEliminarDialogComponent
+    CajaCrearDialogComponent, 
+    CajaEliminarDialogComponent
   ],
   providers: [
     HistoriasService,
     EntidadService,
     ProductoService,
+    CajaService,
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000}}
   ],
   entryComponents: [ 
@@ -96,7 +99,9 @@ import { CajaEliminarDialogComponent } from './caja-eliminar-dialog/caja-elimina
     EntidadCrearDialogComponent,
     EntidadEliminarDialogComponent,
     ProductoCrearComponent,
-    ProductoEliminarComponent
+    ProductoEliminarComponent,
+    CajaCrearDialogComponent, 
+    CajaEliminarDialogComponent
   ]
 })
 export class DashboardModule {}

@@ -36,7 +36,7 @@ export class EntidadListadoComponent implements OnInit {
           data: entidad.payload.doc.data() as Entidad
         });
       });
-    });    
+    });
   }
 
   dialogoCrearEntidad() {

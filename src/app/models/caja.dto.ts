@@ -15,6 +15,6 @@ export class CajaDto {
             tipoProducto: this.tipoProducto,
             kilos: this.kilos,
             entidadDestino: this.entidadDestino
-        }
+        };
     }
 }

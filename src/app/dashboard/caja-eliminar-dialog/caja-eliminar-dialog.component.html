@@ -1,1 +1,8 @@
-<p>caja-eliminar-dialog works!</p>
+<h1 mat-dialog-title>Borrar Caja</h1>
+<div mat-dialog-content>
+    <p>Se eliminará la caja y todos sus datos asociados. ¿Está seguro?</p>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="confirmarBorrado()">Borrar</button>
+</div>

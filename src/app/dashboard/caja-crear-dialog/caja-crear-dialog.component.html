@@ -1,1 +1,25 @@
-<p>caja-crear-dialog works!</p>
+<div fxFlexLayout="column">
+    <h1 *ngIf="id == null" mat-dialog-title>Nueva caja</h1>
+    <h1 *ngIf="id != null" mat-dialog-title>Editar caja</h1>
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Tipo de producto</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let producto of productos" [value]="producto">
+                    {{ producto.nombreProducto }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="number" matInput [(ngModel)]="cajaDto.kilos" placeholder="Peso en kilos de la caja">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Entidad de destino</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let entidad of entidades" [value]="entidad">
+                    {{ entidad.nombre }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+</div>
