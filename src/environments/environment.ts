@@ -5,13 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyD9zYiLRqEqNc5dsCo65YBNphzStUMf58s",
-    authDomain: "scrummanager-7a0ae.firebaseapp.com",
-    databaseURL: "https://scrummanager-7a0ae.firebaseio.com",
-    projectId: "scrummanager-7a0ae",
-    storageBucket: "scrummanager-7a0ae.appspot.com",
-    messagingSenderId: "953326940739",
-    appId: "1:953326940739:web:56da021f032afaf2c5daf6"
+    apiKey: "AIzaSyC7YTr2O9iX5oB3pPjiAV5MltLol9L3ick",
+    authDomain: "campania-kilo.firebaseapp.com",
+    databaseURL: "https://campania-kilo.firebaseio.com",
+    projectId: "campania-kilo",
+    storageBucket: "campania-kilo.appspot.com",
+    messagingSenderId: "368630742869",
+    appId: "1:368630742869:web:5220e1d0889930d9d1f9dc",
+    measurementId: "G-JP56NT6V94"
   }
 };
 
