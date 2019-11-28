@@ -1,1 +1,3 @@
-<p>Dashboard</p>
+<div class="envolturaGrafica" *ngIf="graficaTartaKilosPorProductoReady" style="display: block;">
+    <canvas class="grafica" baseChart [data]="valoresGraficaTartaKilosPorProducto" [labels]="etiquetasGraficaTartaKilosPorProducto" [chartType]="tipoGraficaTarta" [options]="opcionesGraficaResponsiva" [plugins]="pluginsGraficaVoid" [legend]="leyendaGraficaTrue"> </canvas>
+</div>
