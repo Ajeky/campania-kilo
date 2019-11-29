@@ -26,6 +26,10 @@ export class CajaService {
     return this.db.collection<Caja>(nombreColeccion).valueChanges();
   }
 
+  public getCajaById(id: string) {
+    return this.db.collection<Caja>(nombreColeccion).doc(id);
+  }
+
   public updateCaja(id: string, caja: Caja) {
     return this.db.collection<Caja>(nombreColeccion).doc(id).update(caja);
   }
@@ -36,7 +40,7 @@ export class CajaService {
 
   public getCajasByEntidad(entidad: Entidad) {
     return this.db.collection<Caja>(nombreColeccion, ref =>
-      ref.where('entidad', '==', entidad)).valueChanges();
+      ref.where('entidadDestino', '==', entidad)).valueChanges();
   }
 
 }

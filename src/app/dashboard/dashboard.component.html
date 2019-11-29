@@ -1,3 +1,8 @@
-<div class="envolturaGrafica" *ngIf="graficaTartaKilosPorProductoReady" style="display: block;">
-    <canvas class="grafica" baseChart [data]="valoresGraficaTartaKilosPorProducto" [labels]="etiquetasGraficaTartaKilosPorProducto" [chartType]="tipoGraficaTarta" [options]="opcionesGraficaResponsiva" [plugins]="pluginsGraficaVoid" [legend]="leyendaGraficaTrue"> </canvas>
+<div class="envolturaGrafica" *ngIf="graficaTartaKilosPorProductoReady">
+    <canvas class="grafica" baseChart [data]="valoresGraficaTartaKilosPorProducto" [labels]="etiquetasGraficaTartaKilosPorProducto" [chartType]="tipoGraficaTarta" [options]="opcionesGraficaResponsiva" [plugins]="pluginsGraficaVoid" [legend]="leyendaGraficaTrue"> 
+    </canvas>
+</div>
+<div class="envolturaGrafica" *ngIf="graficaBarraKilosPorEntidadReady">
+    <canvas class="grafica" baseChart [data]="valoresGraficaBarraKilosPorEntidad" [labels]="etiquetasGraficaBarraKilosPorEntidad" [chartType]="tipoGraficaBarra" [options]="opcionesGraficaResponsiva" [plugins]="pluginsGraficaVoid" [legend]="leyendaGraficaTrue">
+    </canvas>
 </div>

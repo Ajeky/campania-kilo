@@ -11,9 +11,9 @@ import { EntidadService } from '../services/entidad.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit{
-  total: number;
-  
+export class DashboardComponent implements OnInit {
+  total: any;
+
   //OPCIONES GENÉRICAS PARA LAS GRÁFICAS
   public opcionesGraficaResponsiva: ChartOptions = {
     responsive: true,
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit{
   public leyendaGraficaTrue = true;
   public leyendaGraficaFalse = false;
   public pluginsGraficaVoid = [];
-  
+
   //OPCIONES GRÁFICA DE KILOS POR PRODUCTO TIPO TARTA  
   public etiquetasGraficaTartaKilosPorProducto: Label[];
   public valoresGraficaTartaKilosPorProducto: SingleDataSet[];
@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit{
   public valoresGraficaBarraKilosPorEntidad: SingleDataSet[];
   graficaBarraKilosPorEntidadReady = false;
 
-  constructor (
+  constructor(
     private productoServicio: ProductoService,
     private cajaServicio: CajaService,
     private entidadServicio: EntidadService
@@ -49,11 +49,10 @@ export class DashboardComponent implements OnInit{
   ngOnInit() {
     console.log('ngOnInit')
     this.cargarDatosGraficaTartaKilosPorProductos();
-    // this.cargarDatosGraficaBarrasKilosPorEntidad()
+    this.cargarDatosGraficaBarrasKilosPorEntidad();
   }
 
   cargarDatosGraficaTartaKilosPorProductos() {
-    console.log('Cargando productos')
     this.productoServicio.getProductosRaw().subscribe(resp => {
       this.etiquetasGraficaTartaKilosPorProducto = [];
       this.valoresGraficaTartaKilosPorProducto = [];
@@ -63,27 +62,29 @@ export class DashboardComponent implements OnInit{
         this.valoresGraficaTartaKilosPorProducto.push(producto.kilos);
       })
       this.graficaTartaKilosPorProductoReady = true;
-      console.log(this.etiquetasGraficaTartaKilosPorProducto);
-      console.log(this.valoresGraficaTartaKilosPorProducto);
     });
   }
 
-  // cargarDatosGraficaBarrasKilosPorEntidad() {
-  //   this.entidadServicio.getEntidadesRaw().subscribe(resp => {
-  //     this.etiquetasGraficaBarraKilosPorEntidad = [];
-  //     this.valoresGraficaBarraKilosPorEntidad = [];
+  cargarDatosGraficaBarrasKilosPorEntidad() {
+    this.etiquetasGraficaBarraKilosPorEntidad = [];
+    this.valoresGraficaBarraKilosPorEntidad = [];
+    this.total = 0;
+    console.log('Cargando entidades')
+    this.entidadServicio.getEntidadesRaw().subscribe(resp => {
 
-  //     resp.forEach((entidad: any) => {
-  //       this.total = 0;
-  //       this.etiquetasGraficaBarraKilosPorEntidad.push(entidad.nombre);
-  //       this.cajaServicio.getCajasByEntidad(entidad).forEach((caja: any) => {
-  //         this.total += caja.kilos;
-  //       });
-  //       this.valoresGraficaBarraKilosPorEntidad.push(this.total);
-  //     });
-  //   });
-  //}
+      resp.forEach((entidad: any) => {
+        this.total = 0;
+        this.etiquetasGraficaBarraKilosPorEntidad.push(entidad.nombre);
+        this.cajaServicio.getCajasByEntidad(entidad).subscribe(resp => {
+          resp.forEach((caja: any) => {
+            this.total += caja.kilos;
+          });
+          this.valoresGraficaBarraKilosPorEntidad.push(this.total);
+        });
+      });
+      this.graficaBarraKilosPorEntidadReady = true;
+    });
+  }
 
 
-  
 }

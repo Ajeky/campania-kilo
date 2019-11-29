@@ -6,7 +6,9 @@ export class CajaDto {
         public nCaja: string,
         public tipoProducto: Producto,
         public kilos: number,
-        public entidadDestino: Entidad
+        // public entidadDestino: Entidad
+        entidadId
+        entidadNombre
     ) {  }
 
     transformarDto() {

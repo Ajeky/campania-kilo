@@ -28,6 +28,8 @@ export class CajaCrearDialogComponent implements OnInit {
   caja: Caja;
   productos: Producto[];
   entidades: Entidad[];
+  productoFirestoreResponse: FirestoreResponse<Producto>;
+  kilosCajaAntesDeEditar: number;
 
   constructor(
     public dialogRef: MatDialogRef<CajaCrearDialogComponent>,
@@ -42,7 +44,7 @@ export class CajaCrearDialogComponent implements OnInit {
       this.cajaDto = new CajaDto(this.data.caja.nCaja, this.data.caja.tipoProducto, this.data.caja.kilos, this.data.caja.entidadDestino)
       this.id = this.data.id;
     } else {
-      this.cajaDto = new CajaDto('', null, 0, null);
+      this.cajaDto = new CajaDto('', null, 20, null);
       this.id = null;
     }
     this.entidadServicio.getEntidadesRaw().subscribe(resp => this.entidades = resp);
@@ -52,6 +54,18 @@ export class CajaCrearDialogComponent implements OnInit {
   }
 
   guardarCaja() {
+    this.productoServicio.getProductosByNombre(this.cajaDto.tipoProducto.nombreProducto).subscribe(resp => {
+      this.productoFirestoreResponse = null;
+
+      resp.forEach((productoFirestoreResponse: any) => {
+        this.productoFirestoreResponse = ({
+          id: productoFirestoreResponse.payload.doc.id,
+          data: productoFirestoreResponse.payload.doc.data() as Producto
+        });
+      });
+    });
+    this.productoFirestoreResponse.data.kilos -= this.cajaDto.kilos;
+    this.productoServicio.updateProducto(this.productoFirestoreResponse.id, this.productoFirestoreResponse.data);
     this.cajaServicio.crearCaja(this.cajaDto).then(resp => {
       this.dialogRef.close(true);
     }).catch(resp => {
@@ -60,6 +74,23 @@ export class CajaCrearDialogComponent implements OnInit {
   }
 
   editarCaja() {
+    this.productoFirestoreResponse = null;
+    this.cajaServicio.getCajaById(this.id).valueChanges().subscribe(resp => {
+      this.caja = resp as Caja;
+      this.kilosCajaAntesDeEditar = this.caja.kilos;
+    });
+    this.productoServicio.getProductosByNombre(this.cajaDto.tipoProducto.nombreProducto).subscribe(resp => {
+      resp.forEach((productoFirestoreResponse: any) => {
+        this.productoFirestoreResponse = ({
+          id: productoFirestoreResponse.payload.doc.id,
+          data: productoFirestoreResponse.payload.doc.data() as Producto
+        });
+      });
+    });
+
+    this.productoFirestoreResponse.data.kilos -= (this.cajaDto.kilos - this.kilosCajaAntesDeEditar);
+    this.productoServicio.updateProducto(this.productoFirestoreResponse.id, this.productoFirestoreResponse.data);
+
     this.cajaServicio.updateCaja(this.id, this.cajaDto.transformarDto()).then(resp => {
       this.dialogRef.close(true);
     }).catch(resp => {

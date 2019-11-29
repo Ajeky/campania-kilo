@@ -14,15 +14,18 @@ export class MenuService {
         icon: 'explore'
       },
       {
-        link: 'http://reactprimer.nyasha.me',
-        label: this.translate.instant('React Version'),
-        externalRedirect: true,
+        link: '/productos',
+        label: this.translate.instant('HOME'),
+        icon: 'explore'
+      },
+      {
+        link: '/cajas',
+        label: this.translate.instant('BOXES'),
         icon: 'bookmark'
       },
       {
-        link: 'http://primer.nyasha.me/docs',
+        link: '/entidades',
         label: this.translate.instant('DOCS'),
-        externalRedirect: true,
         icon: 'local_library'
       }
     ];

@@ -24,6 +24,11 @@ export class ProductoService {
     return this.db.collection<Producto>(nombreColeccion).valueChanges();
   }
 
+  getProductosByNombre(nombre: string) {
+    return this.db.collection<Producto>(nombreColeccion, ref => 
+      ref.where('nombreProducto', '==', nombre)).snapshotChanges();
+  }
+
   public updateProducto(id: string, producto: Producto) {
     return this.db.collection<Producto>(nombreColeccion).doc(id).update(producto);
   }
