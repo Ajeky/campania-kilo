@@ -3,7 +3,9 @@ import { Entidad } from './entidad.interface';
 
 export interface Caja {
     nCaja: string;
-    tipoProducto: Producto;
+    productoNombre: string;
+    productoId: string;
     kilos: number;
-    entidadDestino: Entidad;
+    entidadNombre: string;
+    entidadId: string;
 }

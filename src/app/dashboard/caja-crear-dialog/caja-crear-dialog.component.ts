@@ -26,9 +26,10 @@ export class CajaCrearDialogComponent implements OnInit {
   cajaDto: CajaDto;
   id: string;
   caja: Caja;
-  productos: Producto[];
-  entidades: Entidad[];
+  productos: FirestoreResponse<Producto>[];
+  entidades: FirestoreResponse<Entidad>[];
   productoFirestoreResponse: FirestoreResponse<Producto>;
+  entidadFirestoreResponse: FirestoreResponse<Entidad>;
   kilosCajaAntesDeEditar: number;
 
   constructor(
@@ -41,31 +42,51 @@ export class CajaCrearDialogComponent implements OnInit {
 
   ngOnInit() {
     if (this.data != undefined) {
-      this.cajaDto = new CajaDto(this.data.caja.nCaja, this.data.caja.tipoProducto, this.data.caja.kilos, this.data.caja.entidadDestino)
+      this.cajaDto = new CajaDto(this.data.caja.nCaja, this.data.caja.productoNombre, this.data.caja.productoId, this.data.caja.kilos, this.data.caja.entidadNombre, this.data.caja.entidadId)
       this.id = this.data.id;
     } else {
-      this.cajaDto = new CajaDto('', null, 20, null);
+      this.cajaDto = new CajaDto('', '', '', 20, '', '');
       this.id = null;
     }
-    this.entidadServicio.getEntidadesRaw().subscribe(resp => this.entidades = resp);
-    this.productoServicio.getProductosRaw().subscribe(resp => this.productos = resp);
+    this.entidadServicio.getEntidades().subscribe(resp => {
+      this.entidades = [];
+
+      resp.forEach((entidad: any) => {
+        this.entidades.push({
+          id: entidad.payload.doc.id,
+          data: entidad.payload.doc.data() as Entidad
+        });
+      });
+    });
+    this.productoServicio.getProductos().subscribe(resp => {
+      this.productos = [];
+
+      resp.forEach((producto: any) => {
+        this.productos.push({
+          id: producto.payload.doc.id,
+          data: producto.payload.doc.data() as Producto
+        })
+      })
+    });
     console.log(this.entidades);
     console.log(this.productos);
   }
 
   guardarCaja() {
-    this.productoServicio.getProductosByNombre(this.cajaDto.tipoProducto.nombreProducto).subscribe(resp => {
+    this.productoServicio.getProductosByNombre(this.cajaDto.productoNombre).subscribe(resp => {
       this.productoFirestoreResponse = null;
-
-      resp.forEach((productoFirestoreResponse: any) => {
-        this.productoFirestoreResponse = ({
-          id: productoFirestoreResponse.payload.doc.id,
-          data: productoFirestoreResponse.payload.doc.data() as Producto
-        });
+      resp.forEach((producto: any) => {
+        this.cajaDto.productoId = producto.payload.doc.id;
+      });    
+    });
+    this.entidadServicio.getEntidadesByNombre(this.cajaDto.entidadNombre).subscribe(resp => {
+      this.entidadFirestoreResponse = null;
+      resp.forEach((entidad: any) => {
+        this.cajaDto.entidadId = entidad.payload.doc.id;
       });
     });
-    this.productoFirestoreResponse.data.kilos -= this.cajaDto.kilos;
-    this.productoServicio.updateProducto(this.productoFirestoreResponse.id, this.productoFirestoreResponse.data);
+    console.log("Caja a guardar: ")
+    console.log(this.cajaDto)
     this.cajaServicio.crearCaja(this.cajaDto).then(resp => {
       this.dialogRef.close(true);
     }).catch(resp => {
@@ -74,23 +95,22 @@ export class CajaCrearDialogComponent implements OnInit {
   }
 
   editarCaja() {
-    this.productoFirestoreResponse = null;
-    this.cajaServicio.getCajaById(this.id).valueChanges().subscribe(resp => {
-      this.caja = resp as Caja;
-      this.kilosCajaAntesDeEditar = this.caja.kilos;
+    console.log("Caja antes de guardarla: ")
+    console.log(this.cajaDto)
+    this.productoServicio.getProductosByNombre(this.cajaDto.productoNombre).subscribe(resp => {
+      this.productoFirestoreResponse = null;
+      resp.forEach((producto: any) => {
+        this.cajaDto.productoId = producto.payload.doc.id;
+      });    
     });
-    this.productoServicio.getProductosByNombre(this.cajaDto.tipoProducto.nombreProducto).subscribe(resp => {
-      resp.forEach((productoFirestoreResponse: any) => {
-        this.productoFirestoreResponse = ({
-          id: productoFirestoreResponse.payload.doc.id,
-          data: productoFirestoreResponse.payload.doc.data() as Producto
-        });
+    this.entidadServicio.getEntidadesByNombre(this.cajaDto.entidadNombre).subscribe(resp => {
+      this.entidadFirestoreResponse = null;
+      resp.forEach((entidad: any) => {
+        this.cajaDto.entidadId = entidad.payload.doc.id;
       });
     });
-
-    this.productoFirestoreResponse.data.kilos -= (this.cajaDto.kilos - this.kilosCajaAntesDeEditar);
-    this.productoServicio.updateProducto(this.productoFirestoreResponse.id, this.productoFirestoreResponse.data);
-
+    console.log("Caja a guardar: ")
+    console.log(this.cajaDto)
     this.cajaServicio.updateCaja(this.id, this.cajaDto.transformarDto()).then(resp => {
       this.dialogRef.close(true);
     }).catch(resp => {

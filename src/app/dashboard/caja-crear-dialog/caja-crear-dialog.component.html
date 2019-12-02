@@ -7,9 +7,9 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Tipo de producto</mat-label>
-            <mat-select [(ngModel)]="cajaDto.tipoProducto">
-                <mat-option *ngFor="let producto of productos" [value]="producto">
-                    {{ producto.nombreProducto }}
+            <mat-select [(ngModel)]="cajaDto.productoNombre">
+                <mat-option *ngFor="let producto of productos" [value]="producto.data.nombreProducto">
+                    {{ producto.data.nombreProducto }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
@@ -18,9 +18,9 @@
         </mat-form-field>
         <mat-form-field>
             <mat-label>Entidad de destino</mat-label>
-            <mat-select [(ngModel)]="cajaDto.entidadDestino">
-                <mat-option *ngFor="let entidad of entidades" [value]="entidad">
-                    {{ entidad.nombre }}
+            <mat-select [(ngModel)]="cajaDto.entidadNombre">
+                <mat-option *ngFor="let entidad of entidades" [value]="entidad.data.nombre">
+                    {{ entidad.data.nombre }}
                 </mat-option>
             </mat-select>
         </mat-form-field>
