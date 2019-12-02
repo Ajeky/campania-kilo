@@ -53,14 +53,16 @@ export class DashboardComponent implements OnInit {
   }
 
   cargarDatosGraficaTartaKilosPorProductos() {
-    this.productoServicio.getProductosRaw().subscribe(resp => {
+    this.productoServicio.getProductos().subscribe(resp => {
+      this.etiquetasGraficaTartaKilosPorProducto = [];
+      resp.forEach((producto: any) => {
+        
+      });
+    });
+    this.entidadServicio.getEntidadesRaw().subscribe(resp => {
       this.etiquetasGraficaTartaKilosPorProducto = [];
       this.valoresGraficaTartaKilosPorProducto = [];
 
-      resp.forEach((producto: any) => {
-        this.etiquetasGraficaTartaKilosPorProducto.push(producto.nombreProducto);
-        this.valoresGraficaTartaKilosPorProducto.push(producto.kilos);
-      })
       this.graficaTartaKilosPorProductoReady = true;
     });
   }

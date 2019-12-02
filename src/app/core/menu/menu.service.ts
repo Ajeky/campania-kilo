@@ -15,7 +15,7 @@ export class MenuService {
       },
       {
         link: '/productos',
-        label: this.translate.instant('HOME'),
+        label: this.translate.instant('PRODUCTS'),
         icon: 'explore'
       },
       {
@@ -25,7 +25,7 @@ export class MenuService {
       },
       {
         link: '/entidades',
-        label: this.translate.instant('DOCS'),
+        label: this.translate.instant('ENTIDADES'),
         icon: 'local_library'
       }
     ];

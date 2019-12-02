@@ -1,6 +1,7 @@
 {
     "HOME": "Home",
-    "BOXES": "Cajas",
+    "BOXES": "Boxes",
+    "ENTITIES": "Entities",
 
     "APPS": "Apps",
     "CALENDAR": "Calendar",
