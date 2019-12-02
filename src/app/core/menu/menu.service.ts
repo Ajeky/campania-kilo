@@ -16,17 +16,17 @@ export class MenuService {
       {
         link: '/productos',
         label: this.translate.instant('PRODUCTS'),
-        icon: 'explore'
+        icon: 'shopping_basket'
       },
       {
         link: '/cajas',
         label: this.translate.instant('BOXES'),
-        icon: 'bookmark'
+        icon: 'all_inbox'
       },
       {
         link: '/entidades',
         label: this.translate.instant('ENTIDADES'),
-        icon: 'local_library'
+        icon: 'apartment'
       }
     ];
   }
