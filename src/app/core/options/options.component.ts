@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './options.component.html'
 })
 export class OptionsComponent {
-  currentLang = 'en';
+  currentLang = 'es';
   showSettings = false;
   options = {
     collapsed: false,
@@ -21,7 +21,7 @@ export class OptionsComponent {
 
   constructor(public translate: TranslateService) {
     const browserLang: string = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    translate.use(browserLang.match(/en|fr|es/) ? browserLang : 'es');
   }
 
   sendOptions() {
