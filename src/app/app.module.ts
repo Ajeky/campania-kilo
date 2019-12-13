@@ -114,7 +114,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     }),
     PerfectScrollbarModule,
     NgMaterialMultilevelMenuModule,
-    AngularFireModule.initializeApp(environment.firebase, 'scrum-manager'),
+    AngularFireModule.initializeApp(environment.firebase, 'campania-kilo'),
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule
