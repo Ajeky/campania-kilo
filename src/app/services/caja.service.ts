@@ -38,9 +38,13 @@ export class CajaService {
     return this.db.collection<Caja>(nombreColeccion).doc(id).delete();
   }
 
-  public getCajasByEntidad(entidad: Entidad) {
+  public getCajasByEntidad(idEntidad: string) {
     return this.db.collection<Caja>(nombreColeccion, ref =>
-      ref.where('entidadDestino', '==', entidad)).valueChanges();
+      ref.where('entidadId', '==', idEntidad)).valueChanges();
+  }
+
+  public getCajasByProducto(idProducto: string) {
+    return this.db.collection<Caja>(nombreColeccion, ref => ref.where('productoId', '==', idProducto)).valueChanges();
   }
 
 }

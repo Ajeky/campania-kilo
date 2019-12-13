@@ -1,13 +1,11 @@
 export class ProductoDto {
     constructor(
-        public nombreProducto: string,
-        public kilos: number
+        public nombreProducto: string
     ) {  }
 
     transformarDto() {
         return {
-            nombreProducto: this.nombreProducto,
-            kilos: this.kilos
+            nombreProducto: this.nombreProducto
         };
     }
 }

@@ -53,6 +53,7 @@ export class DashboardComponent implements OnInit {
   }
 
   cargarDatosGraficaTartaKilosPorProductos() {
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     this.productoServicio.getProductosRaw().subscribe(resp => {
 =======
@@ -64,13 +65,18 @@ export class DashboardComponent implements OnInit {
     });
     this.entidadServicio.getEntidadesRaw().subscribe(resp => {
 >>>>>>> Stashed changes
+=======
+    this.productoServicio.getProductos().subscribe(resp => {
+      this.etiquetasGraficaTartaKilosPorProducto = [];
+      resp.forEach((producto: any) => {
+        
+      });
+    });
+    this.entidadServicio.getEntidadesRaw().subscribe(resp => {
+>>>>>>> cce296db1d706553bf122d79adbff2bee2382bef
       this.etiquetasGraficaTartaKilosPorProducto = [];
       this.valoresGraficaTartaKilosPorProducto = [];
 
-      resp.forEach((producto: any) => {
-        this.etiquetasGraficaTartaKilosPorProducto.push(producto.nombreProducto);
-        this.valoresGraficaTartaKilosPorProducto.push(producto.kilos);
-      })
       this.graficaTartaKilosPorProductoReady = true;
     });
   }
