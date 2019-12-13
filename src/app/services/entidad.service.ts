@@ -24,11 +24,6 @@ export class EntidadService {
     return this.db.collection<Entidad>(nombreColeccion).valueChanges();
   }
 
-  getEntidadesByNombre(nombre: string) {
-    return this.db.collection<Entidad>(nombreColeccion, ref => 
-      ref.where('nombre', '==', nombre)).snapshotChanges();
-  }
-
   public updateEntidad(id: string, entidad: Entidad) {
     return this.db.collection<Entidad>(nombreColeccion).doc(id).update(entidad);
   }

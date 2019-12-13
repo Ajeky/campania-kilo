@@ -27,10 +27,10 @@ export class ProductoCrearComponent implements OnInit {
 
   ngOnInit() {
     if (this.data != undefined) {
-      this.productoDto = new ProductoDto(this.data.producto.nombreProducto);
+      this.productoDto = new ProductoDto(this.data.producto.nombreProducto, this.data.producto.kilos);
       this.id = this.data.id;
     } else {
-      this.productoDto = new ProductoDto('');
+      this.productoDto = new ProductoDto('', 0);
       this.id = null;
     }
   }

@@ -15,7 +15,7 @@ import { ProductoEliminarComponent } from '../producto-eliminar/producto-elimina
 })
 export class ProductosListadoComponent implements OnInit {
   listaProductos: FirestoreResponse<Producto>[];
-  displayedColumns: string[] = ['nombreProducto', 'acciones'];
+  displayedColumns: string[] = ['nombreProducto', 'kilos', 'acciones'];
 
   constructor(
     private productoServicio: ProductoService,

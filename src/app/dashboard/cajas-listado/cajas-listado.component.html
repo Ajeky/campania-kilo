@@ -5,9 +5,9 @@
             <td mat-cell *matCellDef="let element"> {{ element.data.nCaja }} </td>
         </ng-container>
 
-        <ng-container matColumnDef="productoNombre">
+        <ng-container matColumnDef="tipoProducto">
             <th mat-header-cell *matHeaderCellDef> Tipo de producto </th>
-            <td mat-cell *matCellDef="let element"> {{ element.data.productoNombre }} </td>
+            <td mat-cell *matCellDef="let element"> {{ element.data.tipoProducto.nombreProducto }} </td>
         </ng-container>
 
         <ng-container matColumnDef="kilos">
@@ -15,10 +15,9 @@
             <td mat-cell *matCellDef="let element"> {{ element.data.kilos }} kg</td>
         </ng-container>
 
-        <ng-container matColumnDef="entidadNombre">
+        <ng-container matColumnDef="entidadDestino">
             <th mat-header-cell *matHeaderCellDef> Entidad de destino </th>
             <td mat-cell *matCellDef="let element">
-<<<<<<< HEAD
 <<<<<<< Updated upstream
                 <span *ngIf="element.data.entidadDestino != null"> {{ element.data.entidadDestino.nombre }} </span>
                 <span *ngIf="element.data.entidadDestino == null" style="color: red;"> Entidad no especificada </span>
@@ -26,10 +25,6 @@
                 <span *ngIf="element.data.entidadNombre != null"> {{ element.data.entidadNombre }} </span>
                 <span *ngIf="element.data.entidadNombre == ''" style="color: red;"> Entidad no especificada </span>
 >>>>>>> Stashed changes
-=======
-                <span *ngIf="element.data.entidadNombre != null"> {{ element.data.entidadNombre }} </span>
-                <span *ngIf="element.data.entidadNombre == null" style="color: red;"> Entidad no especificada </span>
->>>>>>> cce296db1d706553bf122d79adbff2bee2382bef
             </td>
         </ng-container>
 
