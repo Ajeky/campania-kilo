@@ -14,7 +14,7 @@ import { CajaEliminarDialogComponent } from '../caja-eliminar-dialog/caja-elimin
 export class CajasListadoComponent implements OnInit {
 
   listaCajas: FirestoreResponse<Caja>[];
-  displayedColumns: string[] = ['nCaja', 'tipoProducto', 'kilos', 'entidadDestino', 'acciones'];
+  displayedColumns: string[] = ['nCaja', 'productoNombre', 'kilos', 'entidadNombre', 'acciones'];
 
   constructor(
     private cajaServicio: CajaService,
