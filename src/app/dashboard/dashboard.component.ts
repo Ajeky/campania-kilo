@@ -30,12 +30,12 @@ export class DashboardComponent implements OnInit {
   //OPCIONES GRÁFICA DE KILOS POR PRODUCTO TIPO TARTA  
   public etiquetasGraficaTartaKilosPorProducto: Label[];
   public valoresGraficaTartaKilosPorProducto: SingleDataSet[];
-  public graficaTartaKilosPorProductoReady = false;
+  graficaTartaKilosPorProductoReady = false;
 
   //OPCIONES GRÁFICA DE KILOS POR ENTIDAD TIPO BARRA
   public etiquetasGraficaBarraKilosPorEntidad: Label[];
   public valoresGraficaBarraKilosPorEntidad: SingleDataSet[];
-  public graficaBarraKilosPorEntidadReady = false;
+  graficaBarraKilosPorEntidadReady = false;
 
   constructor(
     private productoServicio: ProductoService,
@@ -53,17 +53,7 @@ export class DashboardComponent implements OnInit {
   }
 
   cargarDatosGraficaTartaKilosPorProductos() {
-<<<<<<< Updated upstream
     this.productoServicio.getProductosRaw().subscribe(resp => {
-=======
-    this.productoServicio.getProductos().subscribe(resp => {
-      this.etiquetasGraficaTartaKilosPorProducto = [];
-      resp.forEach((producto: any) => {
-        this.etiquetasGraficaTartaKilosPorProducto.push(producto.payload.doc.data().nombreProducto)
-      });
-    });
-    this.entidadServicio.getEntidadesRaw().subscribe(resp => {
->>>>>>> Stashed changes
       this.etiquetasGraficaTartaKilosPorProducto = [];
       this.valoresGraficaTartaKilosPorProducto = [];
 

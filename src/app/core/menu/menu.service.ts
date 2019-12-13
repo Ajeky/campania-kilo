@@ -25,13 +25,8 @@ export class MenuService {
       },
       {
         link: '/entidades',
-<<<<<<< Updated upstream
         label: this.translate.instant('DOCS'),
         icon: 'local_library'
-=======
-        label: this.translate.instant('ENTITIES'),
-        icon: 'apartment'
->>>>>>> Stashed changes
       }
     ];
   }
