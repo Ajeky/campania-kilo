@@ -15,17 +15,16 @@ export class MenuService {
       },
       {
         link: '/productos',
-        label: this.translate.instant('PRODUCTS'),
-        icon: 'shopping_basket'
+        label: this.translate.instant('HOME'),
+        icon: 'explore'
       },
       {
         link: '/cajas',
         label: this.translate.instant('BOXES'),
-        icon: 'all_inbox'
+        icon: 'bookmark'
       },
       {
         link: '/entidades',
-<<<<<<< HEAD
 <<<<<<< Updated upstream
         label: this.translate.instant('DOCS'),
         icon: 'local_library'
@@ -33,10 +32,6 @@ export class MenuService {
         label: this.translate.instant('ENTITIES'),
         icon: 'apartment'
 >>>>>>> Stashed changes
-=======
-        label: this.translate.instant('ENTIDADES'),
-        icon: 'apartment'
->>>>>>> cce296db1d706553bf122d79adbff2bee2382bef
       }
     ];
   }

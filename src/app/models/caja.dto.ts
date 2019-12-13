@@ -4,21 +4,19 @@ import { Entidad } from './entidad.interface';
 export class CajaDto {
     constructor (
         public nCaja: string,
-        public productoNombre: string,
-        public productoId: string,
+        public tipoProducto: Producto,
         public kilos: number,
-        public entidadNombre: string,
-        public entidadId: string
+        // public entidadDestino: Entidad
+        entidadId
+        entidadNombre
     ) {  }
 
     transformarDto() {
         return {
             nCaja: this.nCaja,
-            productoNombre: this.productoNombre,
-            productoId: this.productoId,
+            tipoProducto: this.tipoProducto,
             kilos: this.kilos,
-            entidadNombre: this.entidadNombre,
-            entidadId: this.entidadId
+            entidadDestino: this.entidadDestino
         };
     }
 }
